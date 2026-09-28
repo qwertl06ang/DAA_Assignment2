@@ -1,4 +1,3 @@
-"""Recreate every PNG using only the CSV files; no manually entered results."""
 from pathlib import Path
 import csv
 import matplotlib
@@ -11,11 +10,9 @@ OUT = ROOT / "results" / "plots"
 COLORS = {"DynamicArray": "#166B9A", "MyLinkedList": "#C56B27", "MinHeap": "#23846C",
           "RepeatedInsert": "#166B9A", "Floyd": "#8B4A9D"}
 
-
 def read(name):
     with (ROOT / "results" / name).open(newline="", encoding="utf-8") as handle:
         return list(csv.DictReader(handle))
-
 
 def axes_style(ax, field, all_zero=False):
     ax.set_xscale("log")
@@ -36,7 +33,6 @@ def axes_style(ax, field, all_zero=False):
     for spine in ["top", "right"]:
         ax.spines[spine].set_visible(False)
     ax.legend(fontsize=6.7, loc="best", framealpha=.94)
-
 
 def main():
     OUT.mkdir(parents=True, exist_ok=True)
@@ -89,7 +85,6 @@ def main():
     fig.savefig(OUT / "build_heap.png", dpi=220)
     plt.close(fig)
     print("Created five plots in", OUT)
-
 
 if __name__ == "__main__":
     main()

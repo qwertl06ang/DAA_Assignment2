@@ -1,6 +1,5 @@
 package edu.daa;
 
-/** Counts algorithm-level operations; these are not CPU instructions. */
 public final class Metrics {
     private long steps;
     private long moves;

@@ -1,6 +1,5 @@
 package edu.daa;
 
-/** Singly linked list: O(1) append and head edits, O(i) indexed traversal. */
 public final class MyLinkedList implements IntSequence {
     private static final class Node {
         final int value;

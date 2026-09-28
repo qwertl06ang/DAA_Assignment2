@@ -1,4 +1,3 @@
-"""Check the completeness and median provenance of the exported measurements."""
 from pathlib import Path
 from collections import defaultdict
 import csv
@@ -6,7 +5,6 @@ from decimal import Decimal
 from statistics import median
 
 ROOT = Path(__file__).resolve().parents[1]
-
 
 def check(summary_name, raw_name, expected_rows, expected_keys):
     with (ROOT / "results" / summary_name).open(newline="", encoding="utf-8") as f:
@@ -33,7 +31,6 @@ def check(summary_name, raw_name, expected_rows, expected_keys):
             assert int(row[field]) >= 0
         assert len({s["checksum"] for s in samples}) == 1
     print(f"PASS: {summary_name}: {expected_rows} rows, five samples each, exact medians")
-
 
 if __name__ == "__main__":
     sizes = ["100", "1000", "10000", "100000"]

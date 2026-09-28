@@ -80,7 +80,7 @@ final class MinHeapTest {
         h.metrics().reset(); assertEquals(1, h.extractMin());
         assertCounts(h.metrics(), 4, 3, 1);
         assertTrue(h.isValidHeap());
-        assertCounts(h.metrics(), 4, 3, 1); // The diagnostic cannot pollute counters.
+        assertCounts(h.metrics(), 4, 3, 1);
     }
 
     @Test void buildHeapCopiesInputAndReplacesOldContents() {

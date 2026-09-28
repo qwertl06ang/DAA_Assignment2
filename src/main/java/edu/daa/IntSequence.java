@@ -1,6 +1,5 @@
 package edu.daa;
 
-/** The shared primitive-int API used by both sequence benchmarks. */
 public interface IntSequence {
     int size();
     void add(int value);

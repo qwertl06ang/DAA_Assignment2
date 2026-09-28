@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.Random;
 import static org.junit.jupiter.api.Assertions.*;
 
-/** Shared behavioral tests are inherited by both concrete test classes. */
 abstract class SequenceContractTest {
     abstract IntSequence create();
 

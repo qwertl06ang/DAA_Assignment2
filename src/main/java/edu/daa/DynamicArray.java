@@ -1,6 +1,5 @@
 package edu.daa;
 
-/** A contiguous int array that doubles its capacity and never shrinks. */
 public final class DynamicArray implements IntSequence {
     private int[] data;
     private int size;
@@ -19,7 +18,7 @@ public final class DynamicArray implements IntSequence {
 
     @Override public void add(int value) {
         ensureCapacity();
-        data[size++] = value; // A new value is not a relocation of an existing value.
+        data[size++] = value;
     }
 
     @Override public void add(int index, int value) {
@@ -36,7 +35,7 @@ public final class DynamicArray implements IntSequence {
     @Override public int remove(int index) {
         checkIndex(index);
         int removed = read(index);
-        // Before iteration i, [index, i) already contains the shifted suffix.
+
         for (int i = index; i < size - 1; i++) {
             data[i] = read(i + 1);
             metrics.move();
@@ -51,7 +50,7 @@ public final class DynamicArray implements IntSequence {
     }
 
     @Override public boolean contains(int value) {
-        // Before iteration i, no element in [0, i) equals value.
+
         for (int i = 0; i < size; i++) {
             int candidate = read(i);
             metrics.compare();

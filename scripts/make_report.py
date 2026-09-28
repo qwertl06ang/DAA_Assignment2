@@ -1,4 +1,3 @@
-"""Generate the five-page report and its Markdown companion from measured CSVs."""
 from pathlib import Path
 import csv
 import html
@@ -38,40 +37,32 @@ STYLES = {
                                 textColor=colors.white),
 }
 
-
 def load(name):
     with (ROOT / "results" / name).open(encoding="utf-8", newline="") as f:
         return list(csv.DictReader(f))
-
 
 DATA = load("results.csv")
 BUILD = load("build_heap.csv")
 ENV = dict(line.split("=", 1) for line in (ROOT / "results" / "environment.txt").read_text().splitlines() if "=" in line)
 story, md = [], []
 
-
 def row(w, s, variant="-", source=DATA, n=100000):
     return next(r for r in source if r["workload"] == w and r["structure"] == s
                 and r["variant"] == variant and int(r["n"]) == n)
 
-
 def number(r, field="time_ms", digits=4):
     return f"{float(r[field]):,.{digits}f}" if field == "time_ms" else f"{int(r[field]):,}"
 
-
 def plain(text):
     return html.unescape(re.sub("<[^>]+>", "", text))
-
 
 def p(text, small=False):
     story.append(Paragraph(text, STYLES["small" if small else "body"]))
     md.append(plain(text) + "\n")
 
-
 def heading(text, level=1):
     story.append(Paragraph(text, STYLES["h1" if level == 1 else "h2"]))
     md.append("#" * (level + 1) + " " + text + "\n")
-
 
 def table(headers, rows, widths):
     cells = [[Paragraph(html.escape(str(x)), STYLES["tablehead"]) for x in headers]]
@@ -91,18 +82,15 @@ def table(headers, rows, widths):
     md.extend("| " + " | ".join(map(str, r)) + " |" for r in rows)
     md.append("")
 
-
 def figure(filename, caption, ratio):
     story.append(Image(str(ROOT / "results" / "plots" / filename), width=WIDTH, height=WIDTH / ratio))
     story.append(Spacer(1, 3))
     md.append(f"![{plain(caption)}](results/plots/{filename})\n")
     p(caption, small=True)
 
-
 def new_page():
     story.append(PageBreak())
     md.append("\n---\n")
-
 
 def footer(canvas, doc):
     canvas.saveState()
@@ -114,8 +102,6 @@ def footer(canvas, doc):
     canvas.drawRightString(A4[0] - 42, 20, f"{doc.page} / 5")
     canvas.restoreState()
 
-
-# PAGE 1
 story.append(Paragraph("In-Memory Workload Engine", STYLES["title"]))
 md.append("# In-Memory Workload Engine\n")
 p("<b>Assignment 2 - Data Structures</b><br/>Adilzhan Aliakbar | SE-2521 | 28 September 2026")
@@ -151,7 +137,6 @@ p("<b>Auxiliary space:</b> 1 / n means Θ(1) without growth, Θ(n) during copyin
   "The arrays retain Θ(capacity) cells; deletions do not shrink capacity, so storage need not be Θ(current n). "
   "Accessors and counter reset use Θ(1) time and space.", small=True)
 
-# PAGE 2
 new_page()
 heading("2. Loop-invariant proofs")
 heading("A. DynamicArray.contains(value)", 2)
@@ -189,7 +174,6 @@ p(f"<b>Measured environment:</b> Java {ENV['java_version']}, {ENV['java_vm']}; {
   f"{ENV['available_processors']} visible logical processors; -Xms256m -Xmx1g. Run recorded at {ENV['timestamp_utc']}. "
   "This is one JVM process on a shared workstation, not an isolated JMH study; short timings remain sensitive to JIT and scheduling.", small=True)
 
-# PAGE 3
 new_page()
 heading("4. Read and search workloads")
 p("Each figure shows median time and all three counters. The x-axis is logarithmic; time and positive counts use "
@@ -202,7 +186,6 @@ figure("w2.png", f"Figure 2. W2 at n = 100,000: array {number(a)} ms, list {numb
        f"{number(a, 'comparisons')} comparisons. The list has exactly 500 fewer steps because each successful query returns "
        "without traversing past its matching node. Zero moves and coincident comparison curves are intentional.", 9.1 / 4.5)
 
-# PAGE 4
 new_page()
 heading("5. Mutation and priority workloads")
 a, l = row("W3", "DynamicArray", "head"), row("W3", "MyLinkedList", "head")
@@ -215,7 +198,6 @@ figure("w4.png", f"Figure 4. At n = 100,000, priority processing takes {number(h
        f"{number(h, 'moves')} moves and {number(h, 'comparisons')} comparisons. Only MinHeap belongs to W4. "
        "Random-input batch work grows on the n log n scale; resizing adds a linear total number of copies.", 9.1 / 4.5)
 
-# PAGE 5
 new_page()
 heading("6. Discussion")
 a, l = row("W2", "DynamicArray"), row("W2", "MyLinkedList")
@@ -247,7 +229,7 @@ figure("build_heap.png", f"Figure 5. At n = 100,000, random-input comparisons: F
        f"Descending times: {number(fd)} ms versus {number(it)} ms. Both methods include construction only; validation is excluded.", 9.1 / 2.55)
 p("<b>Validation and reproducibility.</b> 39 JUnit 5 tests passed, with no failures, errors or skipped tests. "
   "CSV checks confirm every required case and exact medians from five samples. README documents execution and the local "
-  "Git history with four feature branches, main and v1.0; GitHub publication is still pending. "
+  "Git history with four feature branches, main and v1.0. Repository: github.com/qwertl06ang/DAA_Assignment2. "
   "The optional JOL memory-footprint bonus was not attempted.", small=True)
 
 doc = SimpleDocTemplate(str(ROOT / "REPORT.pdf"), pagesize=A4, leftMargin=42, rightMargin=42,

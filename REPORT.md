@@ -99,4 +99,4 @@ Leaves already satisfy the heap property; process internal nodes from n/2-1 down
 
 Figure 5. At n = 100,000, random-input comparisons: Floyd 188,488 versus inserts 228,896; descending-input comparisons: 199,978 versus 1,468,946. Descending times: 0.5267 ms versus 4.4540 ms. Both methods include construction only; validation is excluded.
 
-Validation and reproducibility. 39 JUnit 5 tests passed, with no failures, errors or skipped tests. CSV checks confirm every required case and exact medians from five samples. README documents execution and the local Git history with four feature branches, main and v1.0; GitHub publication is still pending. The optional JOL memory-footprint bonus was not attempted.
+Validation and reproducibility. 39 JUnit 5 tests passed, with no failures, errors or skipped tests. CSV checks confirm every required case and exact medians from five samples. README documents execution and the local Git history with four feature branches, main and v1.0. Repository: github.com/qwertl06ang/DAA_Assignment2. The optional JOL memory-footprint bonus was not attempted.

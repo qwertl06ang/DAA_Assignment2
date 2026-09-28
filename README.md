@@ -101,7 +101,7 @@ They intentionally cover different physical operations in arrays and lists.
 
 ## Git and submission
 
-The local repository contains `main`, `feature/array`, `feature/list`,
+The repository contains `main`, `feature/array`, `feature/list`,
 `feature/heap`, `feature/metrics` and release tag `v1.0`. The ZIP includes a
 Git bundle so the history survives extraction without a hidden `.git` folder.
 
@@ -127,6 +127,7 @@ git push origin refs/remotes/bundle/feature/array:refs/heads/feature/array refs/
 git push origin v1.0
 ```
 
-**GitHub URL: not supplied; publication remains to be done.** Add the real URL to
-your submission. The final archive is named
+**GitHub repository:** https://github.com/qwertl06ang/DAA_Assignment2
+
+The final archive is named
 `DAA_Assignment2_Adilzhan_Aliakbar_SE-2521.zip`. Upload it to Moodle yourself.

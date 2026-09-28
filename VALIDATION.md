@@ -42,6 +42,10 @@ retains ordinary Maven compilation for a normal JDK environment. Run
 `mvn clean verify` locally before submission. A copy of the successfully
 packaged runnable JAR is included under `bin/`.
 
-No GitHub repository URL was supplied, so there is no remote publication or
-Moodle upload in this execution record. The ZIP preserves the local Git history
-as `repository.bundle`.
+GitHub repository: https://github.com/qwertl06ang/DAA_Assignment2. The public
+repository has been created; uploading the files is pending GitHub write access.
+The original local history remains preserved in the Git bundle. No Moodle upload
+was performed.
+
+All Java comments and Python comments/docstrings were removed at the user's
+request; the same 39 JUnit tests passed again after this formatting change.

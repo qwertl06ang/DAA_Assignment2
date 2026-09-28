@@ -9,7 +9,6 @@ import java.time.Instant;
 import java.util.Locale;
 import java.util.Random;
 
-/** Reproducible educational benchmark; intentionally uses no collection classes. */
 public final class Benchmark {
     static final int WARMUPS = 3;
     static final int REPETITIONS = 5;
@@ -35,7 +34,7 @@ public final class Benchmark {
                 queries[i] = values[queryRandom.nextInt(n)];
                 queries[i + 500] = -1 - queryRandom.nextInt(Integer.MAX_VALUE);
             }
-            // Shuffle the present/absent queries rather than measuring two blocks.
+
             for (int i = queries.length - 1; i > 0; i--) {
                 int j = queryRandom.nextInt(i + 1);
                 int t = queries[i]; queries[i] = queries[j]; queries[j] = t;
@@ -59,7 +58,7 @@ public final class Benchmark {
                     for (int variant = 0; variant < variants; variant++) {
                         String label = workload == 3 ? (variant == 0 ? "head" : "middle") : "-";
                         for (int order = 0; order < 2; order++) {
-                            // Alternate the first structure at successive sizes.
+
                             boolean linked = ((order + sizeIndex) % 2) == 1;
                             measure(csv, raw, workload, label, linked, data);
                         }
@@ -141,7 +140,7 @@ public final class Benchmark {
         }
         long elapsed = System.nanoTime() - start;
         Sample sample = sample(elapsed, sequence.metrics(), checksum);
-        // All assertions are outside the timer and after the counter snapshot.
+
         if (sequence.size() != data.values.length) throw new AssertionError("Sequence size changed");
         if (workload == 1) {
             long expected = 0;
@@ -244,7 +243,7 @@ public final class Benchmark {
     }
 
     static long median(long[] values) {
-        // Only five measurements: insertion sort avoids a collection dependency.
+
         for (int i = 1; i < values.length; i++) {
             long value = values[i]; int j = i - 1;
             while (j >= 0 && values[j] > value) { values[j + 1] = values[j]; j--; }

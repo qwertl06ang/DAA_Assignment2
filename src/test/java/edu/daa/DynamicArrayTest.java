@@ -26,9 +26,9 @@ final class DynamicArrayTest extends SequenceContractTest {
     @Test void growthAndShiftCountersAreExact() {
         DynamicArray a = new DynamicArray(2); a.add(10); a.add(20);
         a.metrics().reset(); a.add(1, 30);
-        assertCounts(a.metrics(), 3, 3, 0); // Two copies and one suffix shift.
+        assertCounts(a.metrics(), 3, 3, 0);
         a.metrics().reset(); assertEquals(10, a.remove(0));
-        assertCounts(a.metrics(), 3, 2, 0); // Returned cell and two shifts.
+        assertCounts(a.metrics(), 3, 2, 0);
     }
 
     @Test void readsAndSearchCountersAreExact() {
