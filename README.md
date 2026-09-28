@@ -1,6 +1,7 @@
 # DAA Assignment 2 - Data Structures
 
-**Student:** Adilzhan Aliakbar  
+**Student:** Adilzhan Aliakbar
+
 **Group:** SE-2521
 
 Primitive `int` implementations of `DynamicArray`, `MyLinkedList` and `MinHeap`,
