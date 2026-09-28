@@ -1,0 +1,15 @@
+timestamp_utc=2026-09-28T17:56:40.940559200Z
+java_version=25.0.4
+java_vm=OpenJDK 64-Bit Server VM
+os=Windows 11 10.0
+architecture=amd64
+available_processors=12
+max_heap_bytes=1073741824
+seed=42
+warmup_runs=3
+measured_runs=5
+statistic=median
+global_warmup_passes=25
+timing=System.nanoTime; preparation and validation excluded
+W3=1000 insertions followed by 1000 removals; fixed original n/2
+blackhole=1086720662620
