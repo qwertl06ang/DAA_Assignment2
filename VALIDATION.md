@@ -42,10 +42,11 @@ retains ordinary Maven compilation for a normal JDK environment. Run
 `mvn clean verify` locally before submission. A copy of the successfully
 packaged runnable JAR is included under `bin/`.
 
-GitHub repository: https://github.com/qwertl06ang/DAA_Assignment2. The public
-repository has been created; uploading the files is pending GitHub write access.
-The original local history remains preserved in the Git bundle. No Moodle upload
-was performed.
+GitHub repository: https://github.com/qwertl06ang/DAA_Assignment2. The source,
+tests, measurements, report and four feature branches have been published.
+GitHub commits were imported through the Git data API, preserving the original
+branch and merge structure. Their commit identifiers differ from the original
+local history. No Moodle upload was performed.
 
 All Java comments and Python comments/docstrings were removed at the user's
 request; the same 39 JUnit tests passed again after this formatting change.

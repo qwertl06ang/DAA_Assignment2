@@ -116,15 +116,12 @@ git tag --list
 ```
 
 The feature branches are visible as `origin/feature/...` after cloning the bundle.
-To publish, first create an empty GitHub repository, then run the following in
-the restored repository, replacing `YOUR_GITHUB_URL` with its real URL:
+The public GitHub repository is already published. To clone it directly:
 
 ```sh
-git remote rename origin bundle
-git remote add origin YOUR_GITHUB_URL
-git push origin main
-git push origin refs/remotes/bundle/feature/array:refs/heads/feature/array refs/remotes/bundle/feature/list:refs/heads/feature/list refs/remotes/bundle/feature/heap:refs/heads/feature/heap refs/remotes/bundle/feature/metrics:refs/heads/feature/metrics
-git push origin v1.0
+git clone https://github.com/qwertl06ang/DAA_Assignment2.git
+cd DAA_Assignment2
+git switch main
 ```
 
 **GitHub repository:** https://github.com/qwertl06ang/DAA_Assignment2
